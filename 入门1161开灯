@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>  //form math.h import floor向下取整（补充 ceil 向上取整 round四舍五入）
+
+int main ()
+{
+  int n,t;
+  double a;  //doule用来存实数，双精度浮点数，scanf读取用%lf，printf输出用%f（double不是精确存储小数，存储近似值，不能用==判断相等
+             //但可以if(fabs(a - 0.1 < 1e-8)
+  scanf ("%i",&n);
+  int deng[2000001];
+  for (int o = 0 ; o < 200001 ; o ++)
+  {
+    deng[o] = 0;
+  }
+  while (n--)  //n自动减到0，如n=3,n=2,n=1停止，总共跑原始的n次
+  {
+    scanf("%lf%d",&a,&t);
+    for (int p = 1 ; p <= t ; p ++)
+    {
+      int num = (int)floor(p * a +1e-8);  //此处又有精度陷阱，在后面加一个极小的1e-8来平衡，防止出现1.999999999999这种情况被floor去掉
+      deng[num] ^= 1;  //此处为异或符号，规则为0 ^ 0 = 0   0 ^ 1 = 1   1 ^ 0 = 1   1 ^ 1 = 0也即相同为0 不同为1
+    }  // 此处实现逻辑为 若为1 1^1 = 0转换 若为0^1 = 1 转换
+    for (int q = 0 ; q < 2000001 , q ++)
+    {
+      if (deng[q] == 1)
+        {
+        printf("%i",q);
+        return 0;
+        )
+    }

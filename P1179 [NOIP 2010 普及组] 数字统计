@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main ()
+{
+    int L,R;
+    scanf("%i%i",&L,&R);
+
+    int num = 0;
+    for(int i = L ; i <= R ; i ++)
+    {
+        int x = i;
+        while ( x > 0)
+        {
+            if(x % 10 == 2)
+            {
+                num ++;
+            }
+            x = x / 10;
+        }
+    }
+    printf("%i",num);
+}
+数字拆分逻辑，每次都判断一位数

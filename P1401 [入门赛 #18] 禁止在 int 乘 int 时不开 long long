@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main()
+{
+    int xl,xu,yl,yu;
+    int x,y;
+
+    scanf("%d%d",&xl,&xu);
+    scanf("%d%d",&yl,&yu);
+
+    int pan = 0;
+    long long p1 = 1LL * xl * yl;
+    long long p2 = 1LL * xl * yu;
+    long long p3 = 1LL * xu * yl;
+    long long p4 = 1LL * xu * yu;
+
+    long long INT_MIN = -2147483647 - 1;//-214783648到2147483647为int的范围
+    //类型	大小 (常见)	取值范围	头文件
+    //long	32/64 位	至少和 int 一样大	不用额外头文件
+    //long long	64 位	-9223372036854775808 ~ 9223372036854775807	C99 起支持 = int64_t
+    //unsigned long long	64 位无符号	0 ~ 18446744073709551615	=unit64_t
+    long long INT_MAX = 2147483647;
+    int overflow = 0;
+    if (p1 < INT_MIN || p1 > INT_MAX) overflow = 1;
+    if (p2 < INT_MIN || p2 > INT_MAX) overflow = 1;
+    if (p3 < INT_MIN || p3 > INT_MAX) overflow = 1;
+    if (p4 < INT_MIN || p4 > INT_MAX) overflow = 1;
+
+
+    pan = overflow;
+        
+    if (pan == 1)
+    {
+        printf("long long int");
+    }
+    else
+    {
+        printf("int");
+    }
+}

@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int qiumi(int n1,int n2,int n3);
+
+long long fac[10005];
+
+int main()
+{
+    int a,b,k,n,m;
+    scanf("%d%d%d%d%d",&a,&b,&k,&n,&m);
+
+    int ckn,mt,nt;
+    nt = qiumi(a,n,10007);
+    mt = qiumi(b,m,10007);
+    
+    fac[0] = 1;
+    for (int i = 1 ; i <= k ; i ++)
+    {
+        fac[i] = fac[i-1] * i % 10007;
+    }
+    ckn = (long long)fac[k] * qiumi(fac[n],10005,10007)%10007 * qiumi(fac[k-n],10005,10007)%10007;
+
+    int key =(long long)(ckn * mt%10007 * nt%10007); 
+    printf("%d",key);
+}
+
+int qiumi(int n1,int n2,int n3)
+{
+    int a = n1 % n3;
+    int b = 1 % n3;
+    int bb = n2;
+
+    while (bb>0)
+    {
+        if (bb & 1)
+        {
+            b = b*a %n3;
+        }
+        a = a * a %n3;
+        bb >>= 1;
+    }
+    return b;
+}
+
+数学基础：费马小定理 a^(p-1) ≡ 1 (mod p)
+预计算 阶乘组
+long long fac[10005];
+fac[0] = 1;
+for (int i = 1; i <= k ; i ++)
+{
+  fac[i] = fac[i-1] * i;
+}
